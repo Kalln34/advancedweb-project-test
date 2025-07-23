@@ -26,6 +26,7 @@ function getCountryInfo() {
 function getWeatherInfo() {
     const city = document.getElementById('cityInput').value.trim();
     const resultDiv = document.getElementById('weatherResult');
+    const unit = document.getElementById('unitSelect').value;
     const apiKey = '9bffa1724249c6bb0a35f38003f5f95b'; // Replace with your OpenWeatherMap API key
 
     resultDiv.innerHTML = 'Loading...';
