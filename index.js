@@ -26,6 +26,7 @@ function getCountryInfo() {
 function getWeatherInfo() {
     const city = document.getElementById('cityInput').value.trim();
     const resultDiv = document.getElementById('weatherResult');
+    const unit = document.getElementById('unitSelect').value;
     const apiKey = '9bffa1724249c6bb0a35f38003f5f95b'; // Replace with your OpenWeatherMap API key
 
     resultDiv.innerHTML = 'Loading...';
@@ -33,9 +34,10 @@ function getWeatherInfo() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
         .then(response => response.json())
         .then(data => {
+            const tempUnit = unit === 'metric' ? '°C' : '°F';
             resultDiv.innerHTML = `
                 <h3>Weather in ${data.name}</h3>
-                <p><strong>Temperature:</strong> ${data.main.temp} °C</p>
+                <p><strong>Temperature:</strong> ${data.main.temp} ${tempUnit}</p>
                 <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
                 <p><strong>Weather:</strong> ${data.weather[0].description}</p>
             `;
