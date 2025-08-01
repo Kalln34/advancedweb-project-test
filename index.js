@@ -48,49 +48,32 @@ function getWeatherInfo() {
 }
 
 
-async function getFlightData() {
-  const accessKey = '746033c48ac2d471a75cd6d404f19df5';  
-  const airlineName = document.getElementById('airlineInput').value.trim().toLowerCase();
+async function getExchangeRate() {
+  const apiKey = 'fB24q5dX3zarjunpKiQ9wyieziFQuK';
+  const from = document.getElementById('fromCurrency').value.trim().toUpperCase();
+  const to = document.getElementById('toCurrency').value.trim().toUpperCase();
 
-  if (!airlineName) {
-    document.getElementById('output').textContent = 'Please enter an airline name.';
+  if (!from || !to) {
+    document.getElementById('output').textContent = 'Please enter both currency codes.';
     return;
   }
 
-  const endpoint = `http://api.aviationstack.com/v1/flights?access_key=${accessKey}&limit=100`;
+  const url = `https://www.amdoren.com/api/currency.php?api_key=${apiKey}&from=${from}&to=${to}`;
 
   try {
-    const response = await fetch(endpoint);
+    const response = await fetch(url);
     const data = await response.json();
 
-    if (!data || !data.data || data.data.length === 0) {
-      document.getElementById('output').textContent = "No flight data found.";
-      return;
+    if (data.error) {
+      document.getElementById('output').textContent = `Error: ${data.error}`;
+    } else {
+      document.getElementById('output').textContent = `
+Exchange Rate:
+1 ${from} = ${data.amount} ${to}
+      `;
     }
-
-    const matchingFlights = data.data.filter(flight => 
-      flight.airline.name && flight.airline.name.toLowerCase().includes(airlineName)
-    );
-
-    if (matchingFlights.length === 0) {
-      document.getElementById('output').textContent = "No matching flights found for that airline.";
-      return;
-    }
-
-    const results = matchingFlights.map(flight => {
-      return `
-        Flight: ${flight.flight.iata || 'N/A'} (${flight.flight.number || 'N/A'})
-        Airline: ${flight.airline.name || 'N/A'}
-        Departure: ${flight.departure.airport || 'N/A'} (${flight.departure.iata || ''}) at ${flight.departure.scheduled || 'N/A'}
-        Arrival: ${flight.arrival.airport || 'N/A'} (${flight.arrival.iata || ''}) at ${flight.arrival.scheduled || 'N/A'}
-        Status: ${flight.flight_status || 'N/A'}
-        ---`;
-            }).join('\n');
-
-    document.getElementById('output').textContent = results;
-
-  } catch (error) {
-    console.error(error);
-    document.getElementById('output').textContent = "Error fetching flight data.";
+  } catch (err) {
+    console.error(err);
+    document.getElementById('output').textContent = 'Error fetching exchange rate.';
   }
 }
