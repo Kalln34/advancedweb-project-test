@@ -17,13 +17,17 @@
     </header>
 
 <body>
-    <h1>Search Flights by Airline</h1>
+     <h1>Currency Exchange Rate Lookup</h1>
 
-  <label for="airlineInput">Airline Name:</label>
-  <input type="text" id="airlineInput" placeholder="e.g. Delta Air Lines">
-  <button onclick="searchFlightsByAirline()">Search</button>
+  <label for="fromCurrency">From Currency (e.g. USD):</label>
+  <input type="text" id="fromCurrency" placeholder="USD">
 
-  <pre id="output">Enter an airline and click search.</pre>
+  <label for="toCurrency">To Currency (e.g. EUR):</label>
+  <input type="text" id="toCurrency" placeholder="EUR">
+
+  <button onclick="getExchangeRate()">Get Exchange Rate</button>
+
+  <pre id="output">Enter currencies and click "Get Exchange Rate"</pre>
 
   
   <script src="index.js"></script>
