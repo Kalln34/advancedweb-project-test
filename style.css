@@ -27,3 +27,140 @@ input, button {
     margin-top: 1em;
     display: block;
 }
+
+select, label {
+    margin-top: 1em;
+    display: block;
+}
+
+@media (max-width:768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    nav a {
+        padding: 0.5em;
+        font-size: 0.9em;
+    }
+
+    .container {
+        padding: 1.5em 1em;
+    }
+}
+
+
+
+// mobile friendly css 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Base Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+header {
+    background: #0077b6;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 0.5em;
+    font-size: 2rem;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    background: #0096c7;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+nav a:hover {
+    background: #00b4d8;
+}
+
+.container {
+    padding: 2em;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 90%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Inputs and Buttons */
+input, select, button {
+    width: 100%;
+    padding: 0.75em;
+    margin-top: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #0077b6;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005f87;
+}
+
+/* Result Boxes */
+#countryResult, #weatherResult {
+    margin-top: 1.5em;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1em;
+}
+
+/* Responsive Typography and Layout */
+@media (max-width: 600px) {
+    body {
+        font-size: 0.95rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav a {
+        padding: 0.5em;
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 1.5em 1em;
+    }
+}
