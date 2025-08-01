@@ -17,9 +17,13 @@
     </header>
 
 <body>
-  <h1>Flight Information</h1>
-  <button onclick="getFlightData()">Get Flight Data</button>
-  <pre id="output">Click the button to load flight info...</pre>
+    <h1>Search Flights by Airline</h1>
+
+  <label for="airlineInput">Airline Name:</label>
+  <input type="text" id="airlineInput" placeholder="e.g. Delta Air Lines">
+  <button onclick="searchFlightsByAirline()">Search</button>
+
+  <pre id="output">Enter an airline and click search.</pre>
 
   
   <script src="index.js"></script>
