@@ -46,3 +46,33 @@ function getWeatherInfo() {
             resultDiv.innerHTML = 'City not found.';
         });
 }
+
+
+async function getFlightData() {
+  const accessKey = '746033c48ac2d471a75cd6d404f19df5';  
+  const endpoint = `http://api.aviationstack.com/v1/flights?access_key=${accessKey}&limit=1`;
+
+  try {
+    const response = await fetch(endpoint);
+    const data = await response.json();
+
+    if (data && data.data && data.data.length > 0) {
+      const flight = data.data[0];
+      const output = `
+        Flight: ${flight.flight.iata} (${flight.flight.number})
+        Airline: ${flight.airline.name}
+        Departure: ${flight.departure.airport} (${flight.departure.iata}) at ${flight.departure.scheduled}
+        Arrival: ${flight.arrival.airport} (${flight.arrival.iata}) at ${flight.arrival.scheduled}
+        Status: ${flight.flight_status}
+            `;
+
+      document.getElementById('output').textContent = output;
+    } else {
+      document.getElementById('output').textContent = "No flight data available.";
+    }
+
+  } catch (error) {
+    console.error(error);
+    document.getElementById('output').textContent = "Failed to fetch flight data.";
+  }
+}
