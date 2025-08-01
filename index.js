@@ -54,7 +54,7 @@ async function getExchangeRate() {
   const to = document.getElementById('toCurrency').value.trim().toUpperCase();
 
   if (!from || !to) {
-    document.getElementById('output').textContent = 'Please enter both currency codes.';
+    document.getElementById('output').textContent = 'Please enter each currency codes.';
     return;
   }
 
